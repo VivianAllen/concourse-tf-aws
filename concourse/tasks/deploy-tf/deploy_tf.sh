@@ -18,7 +18,7 @@ tfenv install ${TF_VERSION} > /dev/null
 tfenv use ${TF_VERSION}
 
 echo "Applying Terraform from ${DEPLOY_DIR}"
-cd $DEPLOY_DIR
+cd ${DEPLOY_DIR}
 terraform init
 terraform validate
 terraform apply -auto-approve

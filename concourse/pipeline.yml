@@ -20,7 +20,7 @@ jobs:
         trigger: true
 
       - task: assert-tf-state-bucket
-        file: git-main/concourse/task-assert-state-bucket/task_assert_state_bucket.yml
+        file: git-main/concourse/tasks/assert-state-bucket/assert_state_bucket.yml
         params: *aws-params
 
   - name: deploy-tf
@@ -31,5 +31,5 @@ jobs:
         passed: [assert-tf-state-bucket]
 
       - task: deploy-tf
-        file: git-main/concourse/task-deploy-tf/task_deploy_tf.yml
+        file: git-main/concourse/tasks/deploy-tf/deploy_tf.yml
         params: *aws-params

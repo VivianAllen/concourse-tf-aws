@@ -15,3 +15,7 @@ terraform {
 
 # NB all aws credentials got from concourse env - 'partial configuration'
 provider "aws" {}
+
+module "test_app_server" {
+    source = "modules/test_app_server"
+}
