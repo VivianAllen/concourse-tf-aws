@@ -1,0 +1,13 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+      repository:  amazon/aws-cli
+      tag: latest
+
+inputs:
+  - name: git-main
+
+run:
+  path: git-main/concourse/task-assert-state-bucket/task_assert_state_bucket.sh

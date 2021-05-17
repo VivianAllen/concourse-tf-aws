@@ -1,0 +1,35 @@
+resources:
+  - name: git-main
+    type: git
+    source:
+      uri: https://github.com/VivianAllen/concourse-tf-aws
+      branch: main
+
+aws-params: &aws-params
+  AWS_ACCESS_KEY_ID: ((aws-access-key-id))
+  AWS_SECRET_ACCESS_KEY: ((aws-secret-access-key))
+  AWS_DEFAULT_REGION: "eu-west-2"
+  AWS_TF_STATE_BUCKET: "vivian-allen-concourse-tf-aws-1"
+
+jobs:
+
+  - name: assert-tf-state-bucket
+    serial: true
+    plan:
+      - get: git-main
+        trigger: true
+
+      - task: assert-tf-state-bucket
+        file: git-main/concourse/task-assert-state-bucket/task_assert_state_bucket.yml
+        params: *aws-params
+
+  - name: deploy-tf
+    serial: true
+    plan:
+      - get: git-main
+        trigger: true
+        passed: [assert-tf-state-bucket]
+
+      - task: deploy-tf
+        file: git-main/concourse/task-deploy-tf/task_deploy_tf.yml
+        params: *aws-params
