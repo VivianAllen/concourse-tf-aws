@@ -16,6 +16,10 @@ terraform {
 # NB all aws credentials got from concourse env - 'partial configuration'
 provider "aws" {}
 
-# module "test_go_app" {
-#   source = "./modules/test_go_app"
-# }
+module "test_go_app" {
+  source = "./modules/test_go_app"
+}
+
+output test_go_app_elb_dns_name {
+  value       = module.test_go_app.test_go_app_elb_dns_name
+}

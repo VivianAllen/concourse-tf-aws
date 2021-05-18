@@ -39,7 +39,7 @@ resource "aws_launch_configuration" "test_go_app" {
 
   security_groups = [aws_security_group.test_go_app.id]
 
-  user_data = file("${path.module}/bootstrap.sh")
+  user_data = file("${path.module}/files/bootstrap.sh")
 
   lifecycle {
     create_before_destroy = true
