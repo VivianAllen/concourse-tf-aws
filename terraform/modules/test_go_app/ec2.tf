@@ -41,8 +41,10 @@ resource "aws_security_group" "test_go_app_elb" {
   }
 }
 
+# NB use of 'name' here rather than 'name_prefix' will prevent you changing anything about the launch configuration,
+# as they cannot be edited, only replaced
 resource "aws_launch_configuration" "test_go_app" {
-  name          = "test-go-app-lc"
+  name_prefix   = "test-go-app-lc"
   key_name      = aws_key_pair.test_go_app_key_pair.key_name
   image_id      = var.aws_ec2_ami_id
   instance_type = "t2.micro"
@@ -94,4 +96,12 @@ resource "aws_autoscaling_group" "test_go_app" {
 
 output "test_go_app_elb_dns_name" {
   value = aws_elb.test_go_app.dns_name
+}
+
+output "test_go_app_key_private" {
+  value = tls_private_key.test_go_app_key.private_key_pem
+}
+
+output "test_go_app_key_public" {
+  value = tls_private_key.test_go_app_key.public_key_pem
 }
