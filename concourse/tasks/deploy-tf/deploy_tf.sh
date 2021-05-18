@@ -22,4 +22,4 @@ cd ${DEPLOY_DIR}
 terraform init
 terraform validate
 # terraform apply -auto-approve
-terraform destroy
+terraform destroy -auto-approve
