@@ -21,4 +21,5 @@ echo "Applying Terraform from ${DEPLOY_DIR}"
 cd ${DEPLOY_DIR}
 terraform init
 terraform validate
-terraform apply -auto-approve
+# terraform apply -auto-approve
+terraform destroy
