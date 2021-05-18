@@ -17,5 +17,5 @@ terraform {
 provider "aws" {}
 
 module "test_go_app" {
-    source = "./modules/test_go_app"
+  source = "./modules/test_go_app"
 }
