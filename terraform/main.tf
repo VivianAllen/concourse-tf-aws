@@ -23,12 +23,3 @@ module "test_go_app" {
 output "test_go_app_elb_dns_name" {
   value = module.test_go_app.test_go_app_elb_dns_name
 }
-
-output "test_go_app_key_private" {
-  sensitive = true
-  value     = module.test_go_app.test_go_app_key_private
-}
-
-output "test_go_app_key_public" {
-  value = module.test_go_app.test_go_app_key_public
-}

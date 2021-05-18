@@ -2,15 +2,6 @@ data "aws_availability_zones" "test_go_app" {
   state = "available"
 }
 
-resource "tls_private_key" "test_go_app_key" {
-  algorithm = "RSA"
-}
-
-resource "aws_key_pair" "test_go_app_key_pair" {
-  key_name   = var.ssh_key_name
-  public_key = tls_private_key.test_go_app_key.public_key_openssh
-}
-
 # NB egress defaults to ALLOW ALL
 resource "aws_security_group" "test_go_app" {
   name = "test-go-app-asecg"
@@ -45,7 +36,7 @@ resource "aws_security_group" "test_go_app_elb" {
 # as they cannot be edited, only replaced
 resource "aws_launch_configuration" "test_go_app" {
   name_prefix   = "test-go-app-lc"
-  key_name      = aws_key_pair.test_go_app_key_pair.key_name
+  key_name      = "test-go-app-key" # this is a key pair created on the console. Can do it here but retriving the pem is hard
   image_id      = var.aws_ec2_ami_id
   instance_type = "t2.micro"
 
@@ -96,13 +87,4 @@ resource "aws_autoscaling_group" "test_go_app" {
 
 output "test_go_app_elb_dns_name" {
   value = aws_elb.test_go_app.dns_name
-}
-
-output "test_go_app_key_private" {
-  sensitive = true
-  value     = tls_private_key.test_go_app_key.private_key_pem
-}
-
-output "test_go_app_key_public" {
-  value = tls_private_key.test_go_app_key.public_key_pem
 }
