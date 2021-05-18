@@ -99,7 +99,8 @@ output "test_go_app_elb_dns_name" {
 }
 
 output "test_go_app_key_private" {
-  value = tls_private_key.test_go_app_key.private_key_pem
+  sensitive = true
+  value     = tls_private_key.test_go_app_key.private_key_pem
 }
 
 output "test_go_app_key_public" {
