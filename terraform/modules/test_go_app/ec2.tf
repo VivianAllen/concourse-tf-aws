@@ -16,7 +16,7 @@ resource "aws_security_group" "go_app_asg" {
 
 resource "aws_launch_configuration" "test_go_app" {
   name          = "test_go_app_lc"
-  key_name      = var.aws_ec2_instance_name
+
   image_id      = var.aws_ec2_ami_id
   instance_type = "t2.micro"
 
