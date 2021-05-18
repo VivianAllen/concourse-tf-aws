@@ -4,8 +4,8 @@ variable "aws_ec2_ami_id" {
   default     = "ami-403e2524"
 }
 
-variable "aws_ec2_instance_name" {
-  description = "Value of the Name tag for the EC2 instance"
+variable "ssh_key_name" {
+  description = "Name for generated key pair for ec2 instance"
   type        = string
-  default     = "TestGoAppServer"
+  default     = "test-go-app-key"
 }
