@@ -4,7 +4,7 @@ data "aws_availability_zones" "test_go_app" {
 
 # NB egress defaults to ALLOW ALL
 resource "aws_security_group" "test_go_app" {
-  name = "test_go_app_asecg"
+  name = "test-go-app-asecg"
 
   ingress {
     from_port   = 80
@@ -15,7 +15,7 @@ resource "aws_security_group" "test_go_app" {
 }
 
 resource "aws_security_group" "test_go_app_elb" {
-  name = "test_go_app_elb_asecg"
+  name = "test-go-app-elb-asecg"
 
   ingress {
     from_port   = 80
@@ -33,7 +33,7 @@ resource "aws_security_group" "test_go_app_elb" {
 }
 
 resource "aws_launch_configuration" "test_go_app" {
-  name          = "test_go_app_lc"
+  name          = "test-go-app-lc"
   image_id      = var.aws_ec2_ami_id
   instance_type = "t2.micro"
 
@@ -47,7 +47,7 @@ resource "aws_launch_configuration" "test_go_app" {
 }
 
 resource "aws_elb" "test_go_app" {
-  name               = "test_go_app_api"
+  name               = "test-go-app-api"
   availability_zones = ["eu-west-2"]
   security_groups    = [aws_security_group.test_go_app_elb.id]
 
@@ -76,7 +76,7 @@ resource "aws_autoscaling_group" "test_go_app" {
 
   tag {
     key                 = "name"
-    value               = "test_go_app"
+    value               = "test-go-app"
     propogate_at_launch = true
   }
 
