@@ -48,7 +48,7 @@ resource "aws_launch_configuration" "test_go_app" {
 
 resource "aws_elb" "test_go_app" {
   name               = "test-go-app-api"
-  availability_zones = ["eu-west-2"]
+  availability_zones = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
   security_groups    = [aws_security_group.test_go_app_elb.id]
 
   listener {
