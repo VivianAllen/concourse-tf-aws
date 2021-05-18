@@ -69,7 +69,7 @@ resource "aws_elb" "test_go_app" {
 
 resource "aws_autoscaling_group" "test_go_app" {
   launch_configuration = aws_launch_configuration.test_go_app.id
-  load_balancers       = aws_elb.test_go_app.name
+  load_balancers       = [aws_elb.test_go_app.name]
   availability_zones   = ["eu-west-2"]
   min_size             = 2
   max_size             = 5
