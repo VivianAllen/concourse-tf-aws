@@ -49,7 +49,7 @@ resource "aws_launch_configuration" "test_go_app" {
 resource "aws_elb" "test_go_app" {
   name               = "test_go_app_api"
   availability_zones = ["eu-west-2"]
-  security_groups    = [aws_security_group.test_app_elb.id]
+  security_groups    = [aws_security_group.test_go_app_elb.id]
 
   listener {
     lb_port           = 80
