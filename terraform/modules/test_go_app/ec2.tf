@@ -77,7 +77,7 @@ resource "aws_autoscaling_group" "test_go_app" {
   tag {
     key                 = "name"
     value               = "test-go-app"
-    propogate_at_launch = true
+    propagate_at_launch = true
   }
 
 }
